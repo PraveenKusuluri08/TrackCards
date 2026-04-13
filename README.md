@@ -88,11 +88,6 @@ The reminder cron runs daily at 9:00 AM UTC. On Vercel, it's configured in `verc
 curl -H "Authorization: Bearer YOUR_CRON_SECRET" http://localhost:3000/api/reminders/cron
 ```
 
-## Deployment
-
-1. **Vercel** – Connect your repo; add env vars in the dashboard
-2. **Database** – Use Neon or Supabase (both work with Vercel)
-3. **Cron** – Vercel automatically runs the cron from `vercel.json`
 
 ## License
 
