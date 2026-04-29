@@ -4,6 +4,7 @@ import { sendPasswordResetEmail } from "@/lib/email";
 import { z } from "zod";
 import crypto from "crypto";
 import { getClientIp, rateLimit } from "@/lib/rate-limit";
+import { getBaseUrl } from "@/lib/base-url";
 
 const schema = z.object({ email: z.string().email() });
 
@@ -39,7 +40,7 @@ export async function POST(request: Request) {
       select: { id: true },
     });
 
-    const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+    const baseUrl = getBaseUrl();
     const resetUrl = `${baseUrl}/reset-password?token=${token}`;
     const result = await sendPasswordResetEmail(user.email, user.name || "there", resetUrl);
 

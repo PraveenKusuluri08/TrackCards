@@ -5,6 +5,7 @@ import { z } from "zod";
 import crypto from "crypto";
 import { sendEmailVerificationEmail } from "@/lib/email";
 import { getClientIp, rateLimit } from "@/lib/rate-limit";
+import { getBaseUrl } from "@/lib/base-url";
 
 const registerSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -61,7 +62,7 @@ export async function POST(request: Request) {
       data: { userId: user.id, token, expires },
     });
 
-    const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+    const baseUrl = getBaseUrl();
     const verifyUrl = `${baseUrl}/api/auth/verify-email?token=${token}`;
     const result = await sendEmailVerificationEmail(user.email, user.name || "there", verifyUrl);
 
