@@ -27,11 +27,24 @@ export function RiskAlerts({ cards }: { cards: CardData[] }) {
     const days = getDaysUntilDue(card.dueDate);
     const utilLevel = getUtilizationLevel(util);
 
-    if (utilLevel === "high" || utilLevel === "risky") {
+    // Utilization alerts at 30 / 50 / 75 thresholds (pick the highest crossed).
+    if (util >= 75) {
       alerts.push({
-        text: `${card.cardName} utilization above ${utilLevel === "risky" ? 75 : 50}%`,
+        text: `${card.cardName} utilization is ${util.toFixed(0)}% (above 75%)`,
         href: `/cards/${card.id}/history`,
-        severity: utilLevel === "risky" ? "high" : "medium",
+        severity: "high",
+      });
+    } else if (util >= 50) {
+      alerts.push({
+        text: `${card.cardName} utilization is ${util.toFixed(0)}% (above 50%)`,
+        href: `/cards/${card.id}/history`,
+        severity: "medium",
+      });
+    } else if (util >= 30 && utilLevel !== "healthy") {
+      alerts.push({
+        text: `${card.cardName} utilization is ${util.toFixed(0)}% (above 30%)`,
+        href: `/cards/${card.id}/history`,
+        severity: "medium",
       });
     }
     if (days < 0) {

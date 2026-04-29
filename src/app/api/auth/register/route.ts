@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import { z } from "zod";
 import crypto from "crypto";
 import { sendEmailVerificationEmail } from "@/lib/email";
+import { getClientIp, rateLimit } from "@/lib/rate-limit";
 
 const registerSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -13,6 +14,12 @@ const registerSchema = z.object({
 
 export async function POST(request: Request) {
   try {
+    const ip = getClientIp(request);
+    const rl = rateLimit(`register:${ip}`, { windowMs: 60 * 60 * 1000, max: 6 });
+    if (!rl.ok) {
+      return NextResponse.json({ error: "Too many sign-up attempts. Try again later." }, { status: 429 });
+    }
+
     const body = await request.json();
     const parsed = registerSchema.safeParse(body);
 
@@ -56,9 +63,20 @@ export async function POST(request: Request) {
 
     const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
     const verifyUrl = `${baseUrl}/api/auth/verify-email?token=${token}`;
-    await sendEmailVerificationEmail(user.email, user.name || "there", verifyUrl);
+    const result = await sendEmailVerificationEmail(user.email, user.name || "there", verifyUrl);
 
-    return NextResponse.json({ success: true, requiresVerification: true });
+    if (!result.success) {
+      return NextResponse.json(
+        { error: "Failed to send verification email. Please try again later." },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({
+      success: true,
+      requiresVerification: true,
+      emailDelivery: "email",
+    });
   } catch (error) {
     console.error("Registration error:", error);
     return NextResponse.json(

@@ -91,3 +91,13 @@ export type PendingPayment = Prisma.PendingPaymentModel
  * 
  */
 export type Notification = Prisma.NotificationModel
+/**
+ * Model BalanceSnapshot
+ * 
+ */
+export type BalanceSnapshot = Prisma.BalanceSnapshotModel
+/**
+ * Model InAppNotification
+ * 
+ */
+export type InAppNotification = Prisma.InAppNotificationModel

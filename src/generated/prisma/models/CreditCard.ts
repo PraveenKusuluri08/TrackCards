@@ -288,6 +288,7 @@ export type CreditCardWhereInput = {
   paymentHistory?: Prisma.PaymentHistoryListRelationFilter
   pendingPayments?: Prisma.PendingPaymentListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
+  inAppNotifications?: Prisma.InAppNotificationListRelationFilter
 }
 
 export type CreditCardOrderByWithRelationInput = {
@@ -307,6 +308,7 @@ export type CreditCardOrderByWithRelationInput = {
   paymentHistory?: Prisma.PaymentHistoryOrderByRelationAggregateInput
   pendingPayments?: Prisma.PendingPaymentOrderByRelationAggregateInput
   notifications?: Prisma.NotificationOrderByRelationAggregateInput
+  inAppNotifications?: Prisma.InAppNotificationOrderByRelationAggregateInput
 }
 
 export type CreditCardWhereUniqueInput = Prisma.AtLeast<{
@@ -329,6 +331,7 @@ export type CreditCardWhereUniqueInput = Prisma.AtLeast<{
   paymentHistory?: Prisma.PaymentHistoryListRelationFilter
   pendingPayments?: Prisma.PendingPaymentListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
+  inAppNotifications?: Prisma.InAppNotificationListRelationFilter
 }, "id">
 
 export type CreditCardOrderByWithAggregationInput = {
@@ -385,6 +388,7 @@ export type CreditCardCreateInput = {
   paymentHistory?: Prisma.PaymentHistoryCreateNestedManyWithoutCardInput
   pendingPayments?: Prisma.PendingPaymentCreateNestedManyWithoutCardInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutCardInput
+  inAppNotifications?: Prisma.InAppNotificationCreateNestedManyWithoutCardInput
 }
 
 export type CreditCardUncheckedCreateInput = {
@@ -403,6 +407,7 @@ export type CreditCardUncheckedCreateInput = {
   paymentHistory?: Prisma.PaymentHistoryUncheckedCreateNestedManyWithoutCardInput
   pendingPayments?: Prisma.PendingPaymentUncheckedCreateNestedManyWithoutCardInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCardInput
+  inAppNotifications?: Prisma.InAppNotificationUncheckedCreateNestedManyWithoutCardInput
 }
 
 export type CreditCardUpdateInput = {
@@ -421,6 +426,7 @@ export type CreditCardUpdateInput = {
   paymentHistory?: Prisma.PaymentHistoryUpdateManyWithoutCardNestedInput
   pendingPayments?: Prisma.PendingPaymentUpdateManyWithoutCardNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutCardNestedInput
+  inAppNotifications?: Prisma.InAppNotificationUpdateManyWithoutCardNestedInput
 }
 
 export type CreditCardUncheckedUpdateInput = {
@@ -439,6 +445,7 @@ export type CreditCardUncheckedUpdateInput = {
   paymentHistory?: Prisma.PaymentHistoryUncheckedUpdateManyWithoutCardNestedInput
   pendingPayments?: Prisma.PendingPaymentUncheckedUpdateManyWithoutCardNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCardNestedInput
+  inAppNotifications?: Prisma.InAppNotificationUncheckedUpdateManyWithoutCardNestedInput
 }
 
 export type CreditCardCreateManyInput = {
@@ -658,6 +665,22 @@ export type CreditCardUpdateOneWithoutNotificationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CreditCardUpdateToOneWithWhereWithoutNotificationsInput, Prisma.CreditCardUpdateWithoutNotificationsInput>, Prisma.CreditCardUncheckedUpdateWithoutNotificationsInput>
 }
 
+export type CreditCardCreateNestedOneWithoutInAppNotificationsInput = {
+  create?: Prisma.XOR<Prisma.CreditCardCreateWithoutInAppNotificationsInput, Prisma.CreditCardUncheckedCreateWithoutInAppNotificationsInput>
+  connectOrCreate?: Prisma.CreditCardCreateOrConnectWithoutInAppNotificationsInput
+  connect?: Prisma.CreditCardWhereUniqueInput
+}
+
+export type CreditCardUpdateOneWithoutInAppNotificationsNestedInput = {
+  create?: Prisma.XOR<Prisma.CreditCardCreateWithoutInAppNotificationsInput, Prisma.CreditCardUncheckedCreateWithoutInAppNotificationsInput>
+  connectOrCreate?: Prisma.CreditCardCreateOrConnectWithoutInAppNotificationsInput
+  upsert?: Prisma.CreditCardUpsertWithoutInAppNotificationsInput
+  disconnect?: Prisma.CreditCardWhereInput | boolean
+  delete?: Prisma.CreditCardWhereInput | boolean
+  connect?: Prisma.CreditCardWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CreditCardUpdateToOneWithWhereWithoutInAppNotificationsInput, Prisma.CreditCardUpdateWithoutInAppNotificationsInput>, Prisma.CreditCardUncheckedUpdateWithoutInAppNotificationsInput>
+}
+
 export type CreditCardCreateWithoutUserInput = {
   id?: string
   cardName: string
@@ -673,6 +696,7 @@ export type CreditCardCreateWithoutUserInput = {
   paymentHistory?: Prisma.PaymentHistoryCreateNestedManyWithoutCardInput
   pendingPayments?: Prisma.PendingPaymentCreateNestedManyWithoutCardInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutCardInput
+  inAppNotifications?: Prisma.InAppNotificationCreateNestedManyWithoutCardInput
 }
 
 export type CreditCardUncheckedCreateWithoutUserInput = {
@@ -690,6 +714,7 @@ export type CreditCardUncheckedCreateWithoutUserInput = {
   paymentHistory?: Prisma.PaymentHistoryUncheckedCreateNestedManyWithoutCardInput
   pendingPayments?: Prisma.PendingPaymentUncheckedCreateNestedManyWithoutCardInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCardInput
+  inAppNotifications?: Prisma.InAppNotificationUncheckedCreateNestedManyWithoutCardInput
 }
 
 export type CreditCardCreateOrConnectWithoutUserInput = {
@@ -751,6 +776,7 @@ export type CreditCardCreateWithoutPaymentHistoryInput = {
   user: Prisma.UserCreateNestedOneWithoutCreditCardsInput
   pendingPayments?: Prisma.PendingPaymentCreateNestedManyWithoutCardInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutCardInput
+  inAppNotifications?: Prisma.InAppNotificationCreateNestedManyWithoutCardInput
 }
 
 export type CreditCardUncheckedCreateWithoutPaymentHistoryInput = {
@@ -768,6 +794,7 @@ export type CreditCardUncheckedCreateWithoutPaymentHistoryInput = {
   createdAt?: Date | string
   pendingPayments?: Prisma.PendingPaymentUncheckedCreateNestedManyWithoutCardInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCardInput
+  inAppNotifications?: Prisma.InAppNotificationUncheckedCreateNestedManyWithoutCardInput
 }
 
 export type CreditCardCreateOrConnectWithoutPaymentHistoryInput = {
@@ -801,6 +828,7 @@ export type CreditCardUpdateWithoutPaymentHistoryInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutCreditCardsNestedInput
   pendingPayments?: Prisma.PendingPaymentUpdateManyWithoutCardNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutCardNestedInput
+  inAppNotifications?: Prisma.InAppNotificationUpdateManyWithoutCardNestedInput
 }
 
 export type CreditCardUncheckedUpdateWithoutPaymentHistoryInput = {
@@ -818,6 +846,7 @@ export type CreditCardUncheckedUpdateWithoutPaymentHistoryInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pendingPayments?: Prisma.PendingPaymentUncheckedUpdateManyWithoutCardNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCardNestedInput
+  inAppNotifications?: Prisma.InAppNotificationUncheckedUpdateManyWithoutCardNestedInput
 }
 
 export type CreditCardCreateWithoutPendingPaymentsInput = {
@@ -835,6 +864,7 @@ export type CreditCardCreateWithoutPendingPaymentsInput = {
   user: Prisma.UserCreateNestedOneWithoutCreditCardsInput
   paymentHistory?: Prisma.PaymentHistoryCreateNestedManyWithoutCardInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutCardInput
+  inAppNotifications?: Prisma.InAppNotificationCreateNestedManyWithoutCardInput
 }
 
 export type CreditCardUncheckedCreateWithoutPendingPaymentsInput = {
@@ -852,6 +882,7 @@ export type CreditCardUncheckedCreateWithoutPendingPaymentsInput = {
   createdAt?: Date | string
   paymentHistory?: Prisma.PaymentHistoryUncheckedCreateNestedManyWithoutCardInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCardInput
+  inAppNotifications?: Prisma.InAppNotificationUncheckedCreateNestedManyWithoutCardInput
 }
 
 export type CreditCardCreateOrConnectWithoutPendingPaymentsInput = {
@@ -885,6 +916,7 @@ export type CreditCardUpdateWithoutPendingPaymentsInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutCreditCardsNestedInput
   paymentHistory?: Prisma.PaymentHistoryUpdateManyWithoutCardNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutCardNestedInput
+  inAppNotifications?: Prisma.InAppNotificationUpdateManyWithoutCardNestedInput
 }
 
 export type CreditCardUncheckedUpdateWithoutPendingPaymentsInput = {
@@ -902,6 +934,7 @@ export type CreditCardUncheckedUpdateWithoutPendingPaymentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paymentHistory?: Prisma.PaymentHistoryUncheckedUpdateManyWithoutCardNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCardNestedInput
+  inAppNotifications?: Prisma.InAppNotificationUncheckedUpdateManyWithoutCardNestedInput
 }
 
 export type CreditCardCreateWithoutNotificationsInput = {
@@ -919,6 +952,7 @@ export type CreditCardCreateWithoutNotificationsInput = {
   user: Prisma.UserCreateNestedOneWithoutCreditCardsInput
   paymentHistory?: Prisma.PaymentHistoryCreateNestedManyWithoutCardInput
   pendingPayments?: Prisma.PendingPaymentCreateNestedManyWithoutCardInput
+  inAppNotifications?: Prisma.InAppNotificationCreateNestedManyWithoutCardInput
 }
 
 export type CreditCardUncheckedCreateWithoutNotificationsInput = {
@@ -936,6 +970,7 @@ export type CreditCardUncheckedCreateWithoutNotificationsInput = {
   createdAt?: Date | string
   paymentHistory?: Prisma.PaymentHistoryUncheckedCreateNestedManyWithoutCardInput
   pendingPayments?: Prisma.PendingPaymentUncheckedCreateNestedManyWithoutCardInput
+  inAppNotifications?: Prisma.InAppNotificationUncheckedCreateNestedManyWithoutCardInput
 }
 
 export type CreditCardCreateOrConnectWithoutNotificationsInput = {
@@ -969,6 +1004,7 @@ export type CreditCardUpdateWithoutNotificationsInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutCreditCardsNestedInput
   paymentHistory?: Prisma.PaymentHistoryUpdateManyWithoutCardNestedInput
   pendingPayments?: Prisma.PendingPaymentUpdateManyWithoutCardNestedInput
+  inAppNotifications?: Prisma.InAppNotificationUpdateManyWithoutCardNestedInput
 }
 
 export type CreditCardUncheckedUpdateWithoutNotificationsInput = {
@@ -986,6 +1022,95 @@ export type CreditCardUncheckedUpdateWithoutNotificationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paymentHistory?: Prisma.PaymentHistoryUncheckedUpdateManyWithoutCardNestedInput
   pendingPayments?: Prisma.PendingPaymentUncheckedUpdateManyWithoutCardNestedInput
+  inAppNotifications?: Prisma.InAppNotificationUncheckedUpdateManyWithoutCardNestedInput
+}
+
+export type CreditCardCreateWithoutInAppNotificationsInput = {
+  id?: string
+  cardName: string
+  issuerName: string
+  lastFourDigits?: string | null
+  creditLimit: runtime.Decimal | runtime.DecimalJsLike | number | string
+  currentBalance: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minimumDue: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fullDue: runtime.Decimal | runtime.DecimalJsLike | number | string
+  dueDate: Date | string
+  statementDate: Date | string
+  createdAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutCreditCardsInput
+  paymentHistory?: Prisma.PaymentHistoryCreateNestedManyWithoutCardInput
+  pendingPayments?: Prisma.PendingPaymentCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutCardInput
+}
+
+export type CreditCardUncheckedCreateWithoutInAppNotificationsInput = {
+  id?: string
+  userId: string
+  cardName: string
+  issuerName: string
+  lastFourDigits?: string | null
+  creditLimit: runtime.Decimal | runtime.DecimalJsLike | number | string
+  currentBalance: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minimumDue: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fullDue: runtime.Decimal | runtime.DecimalJsLike | number | string
+  dueDate: Date | string
+  statementDate: Date | string
+  createdAt?: Date | string
+  paymentHistory?: Prisma.PaymentHistoryUncheckedCreateNestedManyWithoutCardInput
+  pendingPayments?: Prisma.PendingPaymentUncheckedCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutCardInput
+}
+
+export type CreditCardCreateOrConnectWithoutInAppNotificationsInput = {
+  where: Prisma.CreditCardWhereUniqueInput
+  create: Prisma.XOR<Prisma.CreditCardCreateWithoutInAppNotificationsInput, Prisma.CreditCardUncheckedCreateWithoutInAppNotificationsInput>
+}
+
+export type CreditCardUpsertWithoutInAppNotificationsInput = {
+  update: Prisma.XOR<Prisma.CreditCardUpdateWithoutInAppNotificationsInput, Prisma.CreditCardUncheckedUpdateWithoutInAppNotificationsInput>
+  create: Prisma.XOR<Prisma.CreditCardCreateWithoutInAppNotificationsInput, Prisma.CreditCardUncheckedCreateWithoutInAppNotificationsInput>
+  where?: Prisma.CreditCardWhereInput
+}
+
+export type CreditCardUpdateToOneWithWhereWithoutInAppNotificationsInput = {
+  where?: Prisma.CreditCardWhereInput
+  data: Prisma.XOR<Prisma.CreditCardUpdateWithoutInAppNotificationsInput, Prisma.CreditCardUncheckedUpdateWithoutInAppNotificationsInput>
+}
+
+export type CreditCardUpdateWithoutInAppNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  cardName?: Prisma.StringFieldUpdateOperationsInput | string
+  issuerName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastFourDigits?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creditLimit?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currentBalance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minimumDue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fullDue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  statementDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutCreditCardsNestedInput
+  paymentHistory?: Prisma.PaymentHistoryUpdateManyWithoutCardNestedInput
+  pendingPayments?: Prisma.PendingPaymentUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutCardNestedInput
+}
+
+export type CreditCardUncheckedUpdateWithoutInAppNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  cardName?: Prisma.StringFieldUpdateOperationsInput | string
+  issuerName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastFourDigits?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creditLimit?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currentBalance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minimumDue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fullDue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  statementDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  paymentHistory?: Prisma.PaymentHistoryUncheckedUpdateManyWithoutCardNestedInput
+  pendingPayments?: Prisma.PendingPaymentUncheckedUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCardNestedInput
 }
 
 export type CreditCardCreateManyUserInput = {
@@ -1017,6 +1142,7 @@ export type CreditCardUpdateWithoutUserInput = {
   paymentHistory?: Prisma.PaymentHistoryUpdateManyWithoutCardNestedInput
   pendingPayments?: Prisma.PendingPaymentUpdateManyWithoutCardNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutCardNestedInput
+  inAppNotifications?: Prisma.InAppNotificationUpdateManyWithoutCardNestedInput
 }
 
 export type CreditCardUncheckedUpdateWithoutUserInput = {
@@ -1034,6 +1160,7 @@ export type CreditCardUncheckedUpdateWithoutUserInput = {
   paymentHistory?: Prisma.PaymentHistoryUncheckedUpdateManyWithoutCardNestedInput
   pendingPayments?: Prisma.PendingPaymentUncheckedUpdateManyWithoutCardNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutCardNestedInput
+  inAppNotifications?: Prisma.InAppNotificationUncheckedUpdateManyWithoutCardNestedInput
 }
 
 export type CreditCardUncheckedUpdateManyWithoutUserInput = {
@@ -1059,12 +1186,14 @@ export type CreditCardCountOutputType = {
   paymentHistory: number
   pendingPayments: number
   notifications: number
+  inAppNotifications: number
 }
 
 export type CreditCardCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   paymentHistory?: boolean | CreditCardCountOutputTypeCountPaymentHistoryArgs
   pendingPayments?: boolean | CreditCardCountOutputTypeCountPendingPaymentsArgs
   notifications?: boolean | CreditCardCountOutputTypeCountNotificationsArgs
+  inAppNotifications?: boolean | CreditCardCountOutputTypeCountInAppNotificationsArgs
 }
 
 /**
@@ -1098,6 +1227,13 @@ export type CreditCardCountOutputTypeCountNotificationsArgs<ExtArgs extends runt
   where?: Prisma.NotificationWhereInput
 }
 
+/**
+ * CreditCardCountOutputType without action
+ */
+export type CreditCardCountOutputTypeCountInAppNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InAppNotificationWhereInput
+}
+
 
 export type CreditCardSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1116,6 +1252,7 @@ export type CreditCardSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   paymentHistory?: boolean | Prisma.CreditCard$paymentHistoryArgs<ExtArgs>
   pendingPayments?: boolean | Prisma.CreditCard$pendingPaymentsArgs<ExtArgs>
   notifications?: boolean | Prisma.CreditCard$notificationsArgs<ExtArgs>
+  inAppNotifications?: boolean | Prisma.CreditCard$inAppNotificationsArgs<ExtArgs>
   _count?: boolean | Prisma.CreditCardCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["creditCard"]>
 
@@ -1172,6 +1309,7 @@ export type CreditCardInclude<ExtArgs extends runtime.Types.Extensions.InternalA
   paymentHistory?: boolean | Prisma.CreditCard$paymentHistoryArgs<ExtArgs>
   pendingPayments?: boolean | Prisma.CreditCard$pendingPaymentsArgs<ExtArgs>
   notifications?: boolean | Prisma.CreditCard$notificationsArgs<ExtArgs>
+  inAppNotifications?: boolean | Prisma.CreditCard$inAppNotificationsArgs<ExtArgs>
   _count?: boolean | Prisma.CreditCardCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CreditCardIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1188,6 +1326,7 @@ export type $CreditCardPayload<ExtArgs extends runtime.Types.Extensions.Internal
     paymentHistory: Prisma.$PaymentHistoryPayload<ExtArgs>[]
     pendingPayments: Prisma.$PendingPaymentPayload<ExtArgs>[]
     notifications: Prisma.$NotificationPayload<ExtArgs>[]
+    inAppNotifications: Prisma.$InAppNotificationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1600,6 +1739,7 @@ export interface Prisma__CreditCardClient<T, Null = never, ExtArgs extends runti
   paymentHistory<T extends Prisma.CreditCard$paymentHistoryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CreditCard$paymentHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pendingPayments<T extends Prisma.CreditCard$pendingPaymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CreditCard$pendingPaymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PendingPaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notifications<T extends Prisma.CreditCard$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CreditCard$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  inAppNotifications<T extends Prisma.CreditCard$inAppNotificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CreditCard$inAppNotificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InAppNotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2111,6 +2251,30 @@ export type CreditCard$notificationsArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
+}
+
+/**
+ * CreditCard.inAppNotifications
+ */
+export type CreditCard$inAppNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the InAppNotification
+   */
+  select?: Prisma.InAppNotificationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the InAppNotification
+   */
+  omit?: Prisma.InAppNotificationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InAppNotificationInclude<ExtArgs> | null
+  where?: Prisma.InAppNotificationWhereInput
+  orderBy?: Prisma.InAppNotificationOrderByWithRelationInput | Prisma.InAppNotificationOrderByWithRelationInput[]
+  cursor?: Prisma.InAppNotificationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InAppNotificationScalarFieldEnum | Prisma.InAppNotificationScalarFieldEnum[]
 }
 
 /**

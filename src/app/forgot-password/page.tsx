@@ -40,7 +40,7 @@ export default function ForgotPasswordPage() {
     return (
       <AuthLayout
         title="Check your email"
-        subtitle="If an account exists for that email, we sent a password reset link."
+        subtitle="If an account exists for that email, we sent a password reset link. Please check your inbox (and spam)."
         footer={
           <>
             <Link href="/login" className="font-medium text-teal-600 hover:text-teal-700">

@@ -67,6 +67,8 @@ model User {
   creditCards         CreditCard[]
   notifications       Notification[]
   emailVerifications  EmailVerification[]
+  balanceSnapshots    BalanceSnapshot[]
+  inAppNotifications  InAppNotification[]
 
   @@map("users")
 }
@@ -115,6 +117,7 @@ model CreditCard {
   paymentHistory  PaymentHistory[]
   pendingPayments PendingPayment[]
   notifications   Notification[]
+  inAppNotifications InAppNotification[]
 
   @@map("credit_cards")
 }
@@ -163,4 +166,38 @@ model Notification {
 
   @@unique([cardId, dueDate, reminderDays])
   @@map("notifications")
+}
+
+model BalanceSnapshot {
+  id            String   @id @default(cuid())
+  userId        String   @map("user_id")
+  snapshotDate  DateTime @map("snapshot_date") @db.Date
+  totalBalance  Decimal  @map("total_balance") @db.Decimal(12, 2)
+  cardBalances  Json     @map("card_balances")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, snapshotDate])
+  @@index([userId, snapshotDate])
+  @@map("balance_snapshots")
+}
+
+model InAppNotification {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  cardId    String?  @map("card_id")
+  type      String   @db.VarChar(32)
+  title     String   @db.VarChar(140)
+  body      String?  @db.Text
+  eventDate DateTime @map("event_date") @db.Date
+  readAt    DateTime? @map("read_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  card CreditCard? @relation(fields: [cardId], references: [id], onDelete: SetNull)
+
+  @@unique([userId, type, cardId, eventDate])
+  @@index([userId, readAt, createdAt])
+  @@map("in_app_notifications")
 }

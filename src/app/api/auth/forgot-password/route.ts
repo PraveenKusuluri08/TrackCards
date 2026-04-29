@@ -3,11 +3,18 @@ import { prisma } from "@/lib/prisma";
 import { sendPasswordResetEmail } from "@/lib/email";
 import { z } from "zod";
 import crypto from "crypto";
+import { getClientIp, rateLimit } from "@/lib/rate-limit";
 
 const schema = z.object({ email: z.string().email() });
 
 export async function POST(request: Request) {
   try {
+    const ip = getClientIp(request);
+    const rl = rateLimit(`forgot-password:${ip}`, { windowMs: 15 * 60 * 1000, max: 8 });
+    if (!rl.ok) {
+      return NextResponse.json({ error: "Too many requests. Try again later." }, { status: 429 });
+    }
+
     const body = await request.json();
     const parsed = schema.safeParse(body);
     if (!parsed.success) {
@@ -25,11 +32,12 @@ export async function POST(request: Request) {
     const expires = new Date();
     expires.setHours(expires.getHours() + 1);
 
-    const id = crypto.randomBytes(12).toString("hex");
-    await prisma.$executeRaw`
-      INSERT INTO password_resets (id, email, token, expires, created_at)
-      VALUES (${id}, ${email}, ${token}, ${expires}, NOW())
-    `;
+    // Keep only the latest active token per email.
+    await prisma.passwordReset.deleteMany({ where: { email } });
+    await prisma.passwordReset.create({
+      data: { email, token, expires },
+      select: { id: true },
+    });
 
     const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
     const resetUrl = `${baseUrl}/reset-password?token=${token}`;
@@ -43,7 +51,10 @@ export async function POST(request: Request) {
       );
     } 
 
-    return NextResponse.json({ success: true, message: "If that email exists, we sent a reset link." });
+    return NextResponse.json({
+      success: true,
+      message: "If that email exists, we sent a reset link.",
+    });
   } catch (error) {
     console.error("Forgot password error:", error);
     return NextResponse.json({ error: "Something went wrong" }, { status: 500 });

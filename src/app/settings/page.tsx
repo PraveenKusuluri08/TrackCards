@@ -4,6 +4,7 @@ import { auth } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
 import { SignOutButton } from "@/components/sign-out-button";
 import { ProfileSettingsForm } from "@/components/settings/profile-settings-form";
+import { NotificationBell } from "@/components/notification-bell";
 
 export default async function SettingsPage() {
   const session = await auth();
@@ -23,6 +24,13 @@ export default async function SettingsPage() {
             <Link href="/dashboard">
               <Button variant="ghost">Dashboard</Button>
             </Link>
+            <Link href="/timeline">
+              <Button variant="ghost">Timeline</Button>
+            </Link>
+            <Link href="/score">
+              <Button variant="ghost">Score</Button>
+            </Link>
+            <NotificationBell />
             <SignOutButton />
           </nav>
         </div>
