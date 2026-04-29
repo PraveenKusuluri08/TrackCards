@@ -11,6 +11,7 @@ import { AuthLayout } from "@/components/auth/auth-layout";
 function VerifyEmailContent() {
   const searchParams = useSearchParams();
   const emailParam = searchParams.get("email");
+  const modeParam = searchParams.get("mode");
   const [email, setEmail] = useState(emailParam || "");
   const [resending, setResending] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -27,7 +28,15 @@ function VerifyEmailContent() {
         body: JSON.stringify({ email }),
       });
       const data = await res.json();
-      setMessage(res.ok ? "Verification email sent! Check your inbox." : data.error || "Something went wrong");
+      if (res.ok) {
+        setMessage(
+          data.emailDelivery === "log"
+            ? "Dev mode: verification link printed in your server terminal."
+            : "Verification email sent! Check your inbox."
+        );
+      } else {
+        setMessage(data.error || "Something went wrong");
+      }
     } catch {
       setMessage("Something went wrong");
     }

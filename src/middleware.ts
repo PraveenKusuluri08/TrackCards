@@ -15,8 +15,10 @@ export default middlewareAuth((req) => {
 
   const isProtected =
     path.startsWith("/dashboard") ||
+    path.startsWith("/timeline") ||
     path.startsWith("/cards") ||
-    path.startsWith("/settings");
+    path.startsWith("/settings") ||
+    path.startsWith("/score");
 
   if (isProtected && !isLoggedIn) {
     return NextResponse.redirect(

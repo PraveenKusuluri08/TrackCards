@@ -40,6 +40,9 @@ export function ProfileSettingsForm() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [resetConfirm, setResetConfirm] = useState("");
+  const [resetting, setResetting] = useState(false);
+  const [resetMsg, setResetMsg] = useState("");
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -105,6 +108,34 @@ export function ProfileSettingsForm() {
       setError("Something went wrong");
     }
     setSaving(false);
+  }
+
+  async function handleResetData() {
+    setResetMsg("");
+    if (resetConfirm.trim() !== "RESET") {
+      setResetMsg('Type "RESET" to confirm.');
+      return;
+    }
+    setResetting(true);
+    try {
+      const res = await fetch("/api/user/reset", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ confirm: "RESET" }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setResetMsg(data.error || "Failed to reset data");
+        setResetting(false);
+        return;
+      }
+      setResetMsg("All credit card data deleted. You're starting fresh.");
+      setResetConfirm("");
+      router.refresh();
+    } catch {
+      setResetMsg("Something went wrong");
+    }
+    setResetting(false);
   }
 
   if (loading) {
@@ -213,6 +244,40 @@ export function ProfileSettingsForm() {
               className="mt-1.5"
             />
           </div>
+        </CardContent>
+      </Card>
+
+      <Card className="border-rose-200">
+        <CardHeader>
+          <CardTitle>Danger zone</CardTitle>
+          <p className="text-sm text-slate-600">
+            Permanently delete all your cards, balances, payments, pending payments, notifications, and snapshots.
+          </p>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <div>
+            <Label htmlFor="resetConfirm">Type RESET to confirm</Label>
+            <Input
+              id="resetConfirm"
+              value={resetConfirm}
+              onChange={(e) => setResetConfirm(e.target.value)}
+              placeholder="RESET"
+              className="mt-1.5"
+            />
+          </div>
+          {resetMsg && (
+            <div className={`rounded-lg p-3 text-sm ${resetMsg.includes("deleted") ? "bg-rose-50 text-rose-800" : "bg-amber-50 text-amber-900"}`}>
+              {resetMsg}
+            </div>
+          )}
+          <Button
+            type="button"
+            onClick={handleResetData}
+            disabled={resetting}
+            className="w-full bg-rose-600 hover:bg-rose-700"
+          >
+            {resetting ? "Deleting..." : "Delete all credit card data"}
+          </Button>
         </CardContent>
       </Card>
 

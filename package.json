@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "db:generate": "prisma generate",
+    "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",
     "db:studio": "prisma studio"
   },
@@ -19,11 +20,11 @@
     "clsx": "^2.1.1",
     "next": "16.1.6",
     "next-auth": "^5.0.0-beta.30",
+    "nodemailer": "^7.0.13",
     "pg": "^8.20.0",
     "prisma": "^7.5.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "resend": "^6.9.3",
     "tailwind-merge": "^3.5.0",
     "zod": "^4.3.6"
   },
@@ -31,6 +32,7 @@
     "@tailwindcss/postcss": "^4",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
+    "@types/nodemailer": "^8.0.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
