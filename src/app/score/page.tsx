@@ -5,9 +5,8 @@ import { prisma } from "@/lib/prisma";
 import { toNumber, formatCurrency, getDaysUntilDue } from "@/lib/utils";
 import { getUtilizationLevel } from "@/lib/dashboard-utils";
 import { Button } from "@/components/ui/button";
-import { SignOutButton } from "@/components/sign-out-button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { NotificationBell } from "@/components/notification-bell";
+import { AppHeader } from "@/components/app-header";
 
 function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n));
@@ -84,29 +83,7 @@ export default async function ScorePage() {
 
   return (
     <div className="min-h-screen bg-[#f5f2ed]">
-      <header className="sticky top-0 z-10 border-b border-amber-200/60 bg-white/90 backdrop-blur">
-        <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4 sm:px-6">
-          <Link href="/dashboard" className="text-lg font-bold tracking-tight text-teal-600 hover:text-teal-700">
-            PayTrack AI
-          </Link>
-          <nav className="flex items-center gap-1">
-            <Link href="/dashboard">
-              <Button variant="ghost" size="sm" className="text-slate-600">Dashboard</Button>
-            </Link>
-            <Link href="/timeline">
-              <Button variant="ghost" size="sm" className="text-slate-600">Timeline</Button>
-            </Link>
-            <Link href="/score">
-              <Button variant="ghost" size="sm" className="text-slate-900">Score</Button>
-            </Link>
-            <Link href="/settings">
-              <Button variant="ghost" size="sm" className="text-slate-600">Settings</Button>
-            </Link>
-            <NotificationBell />
-            <SignOutButton />
-          </nav>
-        </div>
-      </header>
+      <AppHeader />
 
       <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
         <div className="mb-6">
